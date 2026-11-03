@@ -1,0 +1,50 @@
+the gpu is learning while the player explores the maze.
+one kernel can train a model, generate text, and draw a world.
+the red walls mark the path through the quiet room.
+the little language model learns to predict the next character.
+training changes the weights. inference reads a fresh snapshot.
+the game keeps moving while the model keeps learning.
+turn left at the blue wall and walk into the next room.
+there is a door at the end of the corridor.
+the light on the wall is warm and the floor is dark.
+every new token comes from the model on the gpu.
+we can see the loss fall as the neural network learns.
+the apple silicon chip runs three jobs in one kernel.
+the cpu sends keys and displays the pixels made by the gpu.
+one worker trains. one worker writes. one worker plays.
+the workers make progress together without another launch.
+the model learns small patterns and then longer words.
+the player walks through the maze and looks around.
+the green room is near the center of the map.
+the world has walls, corners, and open spaces.
+the raycaster draws the scene from the player's eyes.
+the game checks walls before it moves the player.
+the text flows across the screen while training continues.
+this is a small experiment in persistent gpu computing.
+the model is tiny, but the training and inference are real.
+the weights begin as random numbers and improve with practice.
+the loss measures how well the model predicts the next letter.
+the worker takes a sample and computes a forward pass.
+the backward pass computes gradients and updates the weights.
+the other worker samples a new letter from the probabilities.
+the snapshot makes each inference pass use a consistent model.
+the game and the language model share the same running kernel.
+the kernel starts once and stays alive until we stop it.
+the next room has a blue wall and a bright red corner.
+walk forward, turn right, and follow the corridor.
+the arrow keys control the view. the world stays responsive.
+the screen shows steps, tokens, frames, and a changing loss.
+the machine learns as the player moves through the world.
+the metal kernel runs on the apple m4 gpu.
+there are three independent groups of thirty two lanes.
+the small network has a hidden layer and a character vocabulary.
+the neural network learns from this short collection of sentences.
+the text is a demonstration, not a general conversation system.
+the gpu computes the lighting, the walls, and the movement.
+each worker has a job and each job makes progress.
+the new weights are published when a snapshot is ready.
+the model and the game continue until the stop signal arrives.
+the quiet maze has no enemies. explore and watch the model learn.
+the walls keep their shape while the player turns around.
+the game is simple so the architecture is easy to inspect.
+the program shows one launch and three active gpu workloads.

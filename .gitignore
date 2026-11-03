@@ -1,0 +1,7 @@
+build/
+probes/build/
+/results/
+/docs/completion-audit.md
+*.dSYM/
+.DS_Store
+__pycache__/
