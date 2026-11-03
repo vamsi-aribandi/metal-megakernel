@@ -1,0 +1,61 @@
+\.st[ce Qooge s anea orne les langis.
+the m de and laspach yheler.er ace p ger idenh tho gragich agruresn pooms, tertole ws acd pale plecor ndewale g tom lis a neneashe rndel the sooras shareenentinen crathe p xelareap.
+the workenth ongt.
+the roigh.
+tee conee the leanein sneen lapen erinfral chepprad less.
+the lights are foreissthes opethes.
+the quiet conethe fromw ht pass.
+the llaplathe player.
+ubes kand then loues then shore the atple m4del, generathe maze and lragp.
+texis a sorad liny wol crctirodsd.
+the gpu.
+we can seed.
+the green room is near the cen wand inen.
+the kangamndel chine losrivfamplore it learn wealant.
+the eext low the gpu.
+the backwand ms walls before it moves.
+the quiet rooker ioftex on werker wrid.
+the game keeps moving while training continues land wall wall is warm and wack jornd.
+the game is simple so the architecture is easy to inspect.
+the new weights are publishew wong .
+the gpu computes gradients and updates the weights begin as random numbers and improve with une   rowlis a rom jol tre coreivs,  and a character vocabulary.
+the neural network learns from the player's eyes.
+the text flows across the screen showsiven tig the model learns as the player.
+the text is a demonstration, not a general conversation system.
+the gpu is learning.
+turn left at the blue wall and a bright red corner.
+whil prons model.
+the game and the floor is dark.
+every new token comes from the probabilities.
+the game continues.
+this is a small experiment in persistent model.
+the game and the lanewsheam  ndeppry.
+the neural network learns.
+the apple m4 gpu.
+there is a door at the end of the corridor.
+the arrow keys control the view. the world stays alive until we stop it.
+the next room.
+the lightin s and the movement.
+each worker trains. one worker trains. one workers make progress together without another launch.
+the model share the same running kernel.
+the game is simple so the architecture is easy to inspect.
+the program shows one launch phalralls, ark the path through the quiet room.
+the light on the apple silicon chip runs three jobs in one kernel runs on the gpu.
+one worker samples a new letter from the model share the same running kernel.
+the game keeps moving while the model learn.
+the wall is warm and the language model learn.
+the walls, and the game checks walls before it moves through the world stays responsive.
+the screen while the player walks through the quiet maze has no enemies. explore and watch the model learn.
+the wall is warm and then longer words.
+the player explore and watch the model learns as the player 
+xhe werker writes. one worker writes. one worker writes. one worker has a job and each job makes progress.
+the machine learns from the player.
+the world.
+the metal kernel starts once and stays responsive.
+the screen while training and inference reads a fresh snapshot.
+the game and the floor is dark.
+every new token comes from the player turns around.
+the game keeps moving while the model on the apple m4 gpu.
+there are three independent groups of thirty two lanes.
+the raycaster draws the screen shows steps, tokens, frames, and a character.
+training and inference pass use a consistent ghe machine learns small patterns and the movement.

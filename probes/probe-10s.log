@@ -1,0 +1,24 @@
+device=Apple M4 unified=1 seconds=10.0 limit=384 groups=1 threads=96 simdgroups=3 dispatches=1 cache=writeCombined fence=seq_cst_device
+sweepMiB=64 layout=128B-separated
+t=0.000 status=2 ticks=0,0,0 input=1 seen=0,0,0
+t=0.520 status=3 ticks=13,13,13 input=2 seen=2,2,2
+t=1.043 status=3 ticks=25,25,25 input=5 seen=4,4,4
+t=1.567 status=3 ticks=38,38,38 input=7 seen=7,7,7
+t=2.078 status=3 ticks=50,50,50 input=9 seen=9,9,9
+t=2.607 status=3 ticks=62,62,62 input=11 seen=11,11,11
+t=3.130 status=3 ticks=75,75,75 input=13 seen=13,13,13
+t=3.640 status=3 ticks=87,87,87 input=15 seen=15,15,15
+t=4.148 status=3 ticks=99,99,99 input=17 seen=17,17,17
+t=4.655 status=3 ticks=111,111,111 input=19 seen=19,19,19
+t=5.171 status=3 ticks=124,124,124 input=21 seen=21,21,21
+t=5.676 status=3 ticks=136,136,136 input=23 seen=23,23,23
+t=6.203 status=3 ticks=148,148,148 input=25 seen=25,25,25
+t=6.709 status=3 ticks=160,160,160 input=27 seen=27,27,27
+t=7.226 status=3 ticks=173,173,173 input=29 seen=29,29,29
+t=7.733 status=3 ticks=185,185,185 input=31 seen=31,31,31
+t=8.242 status=3 ticks=197,197,197 input=33 seen=33,33,33
+t=8.749 status=3 ticks=209,209,209 input=35 seen=35,35,35
+t=9.266 status=3 ticks=221,221,221 input=37 seen=37,37,37
+t=9.770 status=3 ticks=233,233,233 input=39 seen=39,39,39
+PASS status=4 runtime=10.033s stop=28.588ms samples=344 liveProgress=239,239,239 liveAll=1 liveInput=1 reasons=1,1,1 checksums=4282736101,3704019214,2266553108
+peerTicks=239,238,239 finalTicks=239,239,239

@@ -1,0 +1,22 @@
+device=Apple M4 dispatches=1 threadgroups=1 threads=96 roles=3 wordsPerSnapshot=64 duration=10.0 limit=26000000
+t=0.000 status=2 valid=0,0,0 inputChanges=0,0,0 peers=0,0,0 mismatches=0
+t=0.502 status=3 valid=201,201,201 inputChanges=10,10,10 peers=200,200,200 mismatches=0
+t=1.003 status=3 valid=401,401,401 inputChanges=20,20,21 peers=400,400,400 mismatches=0
+t=1.504 status=3 valid=601,601,601 inputChanges=31,31,31 peers=600,600,600 mismatches=0
+t=2.005 status=3 valid=800,800,800 inputChanges=41,41,41 peers=799,799,799 mismatches=0
+t=2.506 status=3 valid=999,999,999 inputChanges=51,51,51 peers=998,998,998 mismatches=0
+t=3.008 status=3 valid=1199,1199,1199 inputChanges=61,61,61 peers=1198,1198,1198 mismatches=0
+t=3.508 status=3 valid=1398,1398,1398 inputChanges=71,71,71 peers=1397,1397,1397 mismatches=0
+t=4.008 status=3 valid=1598,1598,1598 inputChanges=81,81,81 peers=1597,1597,1597 mismatches=0
+t=4.509 status=3 valid=1798,1798,1798 inputChanges=91,91,91 peers=1797,1797,1797 mismatches=0
+t=5.009 status=3 valid=1997,1997,1997 inputChanges=101,101,101 peers=1996,1996,1996 mismatches=0
+t=5.510 status=3 valid=2196,2196,2196 inputChanges=111,111,111 peers=2195,2195,2195 mismatches=0
+t=6.010 status=3 valid=2395,2395,2395 inputChanges=121,121,121 peers=2394,2394,2394 mismatches=0
+t=6.511 status=3 valid=2594,2594,2594 inputChanges=131,131,131 peers=2593,2593,2593 mismatches=0
+t=7.012 status=3 valid=2794,2794,2794 inputChanges=141,141,141 peers=2793,2793,2793 mismatches=0
+t=7.514 status=3 valid=2994,2994,2994 inputChanges=151,151,151 peers=2993,2993,2993 mismatches=0
+t=8.016 status=3 valid=3194,3194,3194 inputChanges=161,161,161 peers=3193,3193,3193 mismatches=0
+t=8.518 status=3 valid=3394,3394,3394 inputChanges=171,171,171 peers=3393,3393,3393 mismatches=0
+t=9.018 status=3 valid=3593,3593,3593 inputChanges=181,181,181 peers=3592,3592,3592 mismatches=0
+t=9.520 status=3 valid=3793,3793,3793 inputChanges=191,191,191 peers=3792,3792,3792 mismatches=0
+PASS elapsed=10.001 stopMs=0.120 status=4 samples=3986 valid=3985,3985,3985 inputChanges=200,200,200 peers=3984,3984,3984 mismatches=0 reasons=1,1,1 error=(null)

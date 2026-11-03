@@ -1,0 +1,16 @@
+{
+  "pass": true,
+  "seconds": 60.008158875,
+  "liveSamples": 585,
+  "simultaneousProgressIntervals": 584,
+  "steps": 518429,
+  "tokens": 3211,
+  "frames": 1607,
+  "firstLoss": 4.552879333496094,
+  "finalLoss": 0.09447711706161499,
+  "observedVersions": 586,
+  "tokenWeightVersions": 3211,
+  "verifiedSnapshotCopies": 3211,
+  "frameColors": 171,
+  "scriptedInputChecked": true
+}

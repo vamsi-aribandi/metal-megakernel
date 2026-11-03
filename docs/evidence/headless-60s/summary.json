@@ -1,0 +1,48 @@
+{
+  "coherentFrameCopies" : 1607,
+  "device" : "Apple M4",
+  "dispatches" : 1,
+  "doneFlags" : [
+    1,
+    1,
+    1
+  ],
+  "error" : "",
+  "experimentalSystemCoherence" : true,
+  "finalLoss" : 0.09447711706161499,
+  "firstLoss" : 4.5528793334960938,
+  "frames" : 1607,
+  "inferenceHash" : 3054938489,
+  "inferenceVersion" : 518272,
+  "liveProgressSamples" : [
+    585,
+    585,
+    585
+  ],
+  "observedVersions" : 586,
+  "os" : "Version 26.5.1 (Build 25F80)",
+  "peerProgress" : [
+    3211,
+    1607,
+    518320,
+    1607,
+    518109,
+    3209
+  ],
+  "rejectedFrameCopies" : 0,
+  "seconds" : 60.008158874999999,
+  "simdGroups" : 3,
+  "skippedTokens" : 0,
+  "snapshotErrors" : 0,
+  "snapshotVerifiedCopies" : 3211,
+  "status" : 4,
+  "steps" : 518429,
+  "stopMilliseconds" : 6.3891659999981698,
+  "text" : "\\.st[ce Qooge s anea orne les langis.\nthe m de and laspach yheler.er ace p ger idenh tho gragich agruresn pooms, tertole ws acd pale plecor ndewale g tom lis a neneashe rndel the sooras shareenentinen crathe p xelareap.\nthe workenth ongt.\nthe roigh.\ntee conee the leanein sneen lapen erinfral chepprad less.\nthe lights are foreissthes opethes.\nthe quiet conethe fromw ht pass.\nthe llaplathe player.\nubes kand then loues then shore the atple m4del, generathe maze and lragp.\ntexis a sorad liny wol crctirodsd.\nthe gpu.\nwe can seed.\nthe green room is near the cen wand inen.\nthe kangamndel chine losrivfamplore it learn wealant.\nthe eext low the gpu.\nthe backwand ms walls before it moves.\nthe quiet rooker ioftex on werker wrid.\nthe game keeps moving while training continues land wall wall is warm and wack jornd.\nthe game is simple so the architecture is easy to inspect.\nthe new weights are publishew wong .\nthe gpu computes gradients and updates the weights begin as random numbers and improve with une   rowlis a rom jol tre coreivs,  and a character vocabulary.\nthe neural network learns from the player's eyes.\nthe text flows across the screen showsiven tig the model learns as the player.\nthe text is a demonstration, not a general conversation system.\nthe gpu is learning.\nturn left at the blue wall and a bright red corner.\nwhil prons model.\nthe game and the floor is dark.\nevery new token comes from the probabilities.\nthe game continues.\nthis is a small experiment in persistent model.\nthe game and the lanewsheam  ndeppry.\nthe neural network learns.\nthe apple m4 gpu.\nthere is a door at the end of the corridor.\nthe arrow keys control the view. the world stays alive until we stop it.\nthe next room.\nthe lightin s and the movement.\neach worker trains. one worker trains. one workers make progress together without another launch.\nthe model share the same running kernel.\nthe game is simple so the architecture is easy to inspect.\nthe program shows one launch phalralls, ark the path through the quiet room.\nthe light on the apple silicon chip runs three jobs in one kernel runs on the gpu.\none worker samples a new letter from the model share the same running kernel.\nthe game keeps moving while the model learn.\nthe wall is warm and the language model learn.\nthe walls, and the game checks walls before it moves through the world stays responsive.\nthe screen while the player walks through the quiet maze has no enemies. explore and watch the model learn.\nthe wall is warm and then longer words.\nthe player explore and watch the model learns as the player \nxhe werker writes. one worker writes. one worker writes. one worker has a job and each job makes progress.\nthe machine learns from the player.\nthe world.\nthe metal kernel starts once and stays responsive.\nthe screen while training and inference reads a fresh snapshot.\nthe game and the floor is dark.\nevery new token comes from the player turns around.\nthe game keeps moving while the model on the apple m4 gpu.\nthere are three independent groups of thirty two lanes.\nthe raycaster draws the screen shows steps, tokens, frames, and a character.\ntraining and inference pass use a consistent ghe machine learns small patterns and the movement.",
+  "threadgroups" : 1,
+  "threads" : 96,
+  "tokens" : 3211,
+  "tokenVersionRegressions" : 0,
+  "tokenWeightVersions" : 3211,
+  "trainingHash" : 827344648
+}
