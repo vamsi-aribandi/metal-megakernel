@@ -1,2 +1,3 @@
 # Preserve recorded model output byte-for-byte, including trailing spaces.
 docs/evidence/**/generated.txt -whitespace
+*.rgba binary
