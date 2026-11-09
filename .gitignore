@@ -5,3 +5,6 @@ probes/build/
 *.dSYM/
 .DS_Store
 __pycache__/
+
+*.wad
+*.WAD

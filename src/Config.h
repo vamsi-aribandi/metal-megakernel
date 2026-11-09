@@ -11,8 +11,8 @@
 #define W_OUTPUT (W_HBIAS + HIDDEN)
 #define W_OBIAS (W_OUTPUT + VOCAB * HIDDEN)
 #define PARAMS (W_OBIAS + VOCAB)
-#define WIDTH 240
-#define HEIGHT 160
+#define WIDTH 320
+#define HEIGHT 200
 #define TOKEN_CAP 4096
 // CPU-owned input buffer. GPU only reads.
 #define C_STOP 0
@@ -35,22 +35,16 @@
 #define O_INFER_SEES_STEPS 35
 #define O_INFER_SEES_FRAMES 36
 #define O_FRAMES 64
-#define O_X 65
-#define O_Y 66
-#define O_ANGLE 67
-#define O_KEYS_SEEN 68
 #define O_GAME_DONE 69
 #define O_GAME_SEES_STEPS 70
 #define O_GAME_SEES_TOKENS 71
-#define O_FRAME_SEQ 72
 #define O_TRAIN_HASH 7
 #define O_INFER_HASH 37
 #define O_SNAPSHOT_ERRORS 38
 #define O_SNAPSHOT_COPIES 39
 #define O_TOKEN_BASE 128
 #define O_TOKEN_VERSION_BASE (O_TOKEN_BASE + TOKEN_CAP)
-#define O_PIXEL_BASE (O_TOKEN_VERSION_BASE + TOKEN_CAP)
-#define O_WORDS (O_PIXEL_BASE + WIDTH * HEIGHT)
+#define O_WORDS (O_TOKEN_VERSION_BASE + TOKEN_CAP)
 // Keys: forward/backward/left/right/strafe-left/strafe-right.
 #define KEY_FORWARD 1
 #define KEY_BACKWARD 2
