@@ -1,3 +1,5 @@
+> Historical evidence: this page describes the earlier raycast maze, not the Doom integration. See [Doom integration](doom-integration.md).
+
 # Validation on an M4 Mac
 
 Tested during development on 2026-11-02: **M4 Mac mini, 16 GB memory, 10 GPU cores, macOS 26.5.1 (25F80)**. The shader targets Metal Shading Language 3.2.

@@ -1,0 +1,31 @@
+{
+  "seconds": 60.473279417,
+  "liveSamples": 551,
+  "overlapIntervals": 547,
+  "steps": 525642,
+  "tokens": 3585,
+  "tokenWeightVersions": 3585,
+  "doomTicks": 2099,
+  "doomFrames": 2055,
+  "firstLoss": 4.552879333496094,
+  "finalLoss": 0.08567994087934494,
+  "stopMilliseconds": 19.00129100000214,
+  "scriptedControlsChecked": true,
+  "hostSourceSHA256": "6ee67d448d67c99c35d531f7d2b77f85b5e23cd70299d2d4774dac4f965ea069",
+  "outerShaderSHA256": "5b9eaa58852a995bace54773e7e7c0e2efc56e79f39070fe371249a05fe3572c",
+  "compiledShaderSHA256": "772576c0e5f5d53ca1754f86834782c460dae8fdae7a8805a22479d323d84462",
+  "binarySHA256": "6d4f11d62c521cfe9a88dfa72997e28ea4e23c7a3bcb368ea92138d2bac56474",
+  "doomReference": {
+    "framesCompared": 2055,
+    "diagnosticValuesCompared": 32880,
+    "frameBytesComparedBySHA256": 526080000,
+    "maxTicksPerFrame": 2,
+    "observedKeyMask": 207,
+    "finalDigest": "13df7d7610b5cfea1c66bdef451a71072966105f386c9b695416f4ac89daeada",
+    "cpuReplaySeconds": 0.34929750000000004,
+    "reference": "Native Doom C with documented cache padding, independent of WASM and Metal lowering",
+    "referenceLibrarySHA256": "f3547067db69f737186b7a70614b8b05b78dd899d00ebe453f84daf59281521f"
+  },
+  "wadSHA256": "1d7d43be501e67d927e415e0b8f3e29c3bf33075e859721816f652a526cac771",
+  "passed": true
+}

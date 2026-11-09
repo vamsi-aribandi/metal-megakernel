@@ -1,101 +1,145 @@
 # metal-megakernel
 
-One persistent Metal GPU kernel that **trains a language model, generates text from its changing weights, and runs an interactive maze at the same time** on an Apple Silicon Mac.
+One persistent Metal GPU kernel that **trains a small language model, generates
+text from its changing weights, and runs real Doom at the same time** on an Apple
+Silicon Mac.
 
-Inspired by Jerry Zhu and Arnold Xu's [open-flapping-airplanes](https://github.com/Bobliuuu/open-flapping-airplanes). This project carries its central idea over to Metal with a smaller model and a simple game. See [credits](CREDITS.md) for the original work and other sources that helped.
+Inspired by Jerry Zhu and Arnold Xu's
+[open-flapping-airplanes](https://github.com/Bobliuuu/open-flapping-airplanes).
+Doom comes from our [metal-doom](https://github.com/vamsi-aribandi/metal-doom)
+submodule, built from the original game C into native Metal functions.
+See [credits and licenses](CREDITS.md).
 
-**Experimental:** live communication between the CPU and the running GPU kernel uses an undocumented Metal compiler feature, `coherent(system)`. It works on the tested M4 Mac, but a future macOS or compiler update could break it. [Details](docs/host-gpu-coherence.md).
+**Experimental:** live CPU/GPU communication uses the undocumented Metal compiler
+feature `coherent(system)`. A future compiler or macOS release could break it.
+[Details](docs/host-gpu-coherence.md).
 
 ## Run it
 
-Tested on an **M4 Mac mini with 16 GB memory, 10 GPU cores, and macOS 26.5.1**. You need Apple's Command Line Tools. Install them with `xcode-select --install` if necessary. Python 3 is needed for the tests.
+Requires an Apple Silicon Mac with unified memory, Apple's Command Line Tools,
+Python 3.9+, and the Doom build tools. On a Homebrew Mac:
 
 ```sh
-git clone https://github.com/vamsi-aribandi/metal-megakernel.git
+xcode-select --install  # only if Command Line Tools are missing
+brew install llvm lld wabt
+git clone --recurse-submodules https://github.com/vamsi-aribandi/metal-megakernel.git
 cd metal-megakernel
-./run.sh
+./run.sh --wad /path/to/doom1.wad
 ```
 
-The window shows the loss, generated text, and game. Everything starts from scratch on each launch.
+Supply your own compatible Doom IWAD; game assets are not bundled. You can also
+set `DOOM_WAD`, or omit the path in window mode to use the native file picker.
+The app starts fresh each launch, on E1M1. It shows training loss, generated
+characters, and Doom at 320×200. The first build and Metal compilation take time.
 
 | Keys | Action |
 |---|---|
-| W / S or Up / Down | Move forward / backward |
+| W / S or Up / Down | Forward / backward |
 | A / D or Left / Right | Turn |
 | Q / E | Strafe |
-| Esc | Stop the GPU kernel |
+| Space / Enter | Fire / use |
+| Shift / 1–7 | Run / select weapon |
+| Tab / M / Z | Map / game menu / menu enter |
+| Esc or close window | Stop all three GPU workers |
 
-Closing the window also stops the kernel. After building, you can open `build/Metal Megakernel.app` from Finder. Keep that app inside the build folder; it reads the shader and corpus from the project.
-
-No model download or Python packages are needed. The GPU code is compiled at launch through Metal, so a separate `metal` compiler executable is not required.
+After building, `build/Metal Megakernel.app` can also open from Finder. Keep it
+inside the build folder so it can find the source, corpus, and generated engine.
 
 ## How it works
 
-The app launches **one threadgroup of 96 GPU threads, once**. Those threads form three independent groups of 32:
+The app submits **one command buffer, one dispatch, one threadgroup of 96 GPU
+threads**. Three independent SIMD groups of 32 stay inside that invocation:
 
-1. **Train:** read a text sample, predict the next character, calculate the error, and update the model's weights.
-2. **Generate:** take a fresh snapshot of the weights and use it to produce more text.
-3. **Play:** read the controls, move the player, check walls, and draw the maze pixels.
+1. **Train:** predict the next character, calculate gradients, update weights.
+2. **Generate:** copy complete, checked snapshots of the changing weights and
+   sample more text.
+3. **Play:** initialize Doom, read controls, advance the game, and render pixels.
 
-All three groups stay inside the same GPU invocation until stopped. They use only local group barriers, so one job does not wait for the others at a shared barrier. The CPU initializes resources, sends keyboard state and wall time, and displays the results. It does not calculate training updates, generated characters, game movement, or the game image.
+Doom gameplay and scene traversal run on the game group's owner lane; its 32
+lanes cooperate on opaque rendering and palette conversion. The CPU uploads
+assets before launch, supplies time and keyboard state, and copies published
+frames to the native window. It does not simulate Doom or draw the game scene.
+All workload barriers are scoped to a SIMD group. A slow Doom frame does not
+require the training or generation groups to wait at a shared barrier.
 
-Training and generation use separate weight buffers. A small mailbox passes complete snapshots between them. Generation checks each copied snapshot and records which model version produced each character. The game also publishes complete frames so the CPU can avoid showing a half-written image.
+The model and outer kernel use **Metal Shading Language**. The native app uses
+**Objective-C++**, **Metal**, and **AppKit/Cocoa**. Doom starts as **C**, built
+through WASM and wasm2c into native Metal source; WASM is a build intermediate,
+with no runtime interpreter. Tests use **Python**; shell scripts build and run it.
 
-The GPU code is written directly in **Metal Shading Language**. The Mac app uses **Objective-C++**, **Metal**, and **AppKit/Cocoa**. Tests use **Python**, and shell scripts build and run the project.
+## Differences from upstream
 
-## What changed from upstream?
-
-The upstream repository has both a small character model and a later 162-million-parameter GPT transformer. This project follows the **small character model**:
+This follows upstream's small character model, rather than its later
+162-million-parameter transformer:
 
 | | Upstream small demo | This project |
 |---|---:|---:|
-| Previous text the model sees | 8 characters | 8 characters |
+| Context | 8 characters | 8 characters |
 | Hidden layer | 512 units | 128 units |
 | Learned weights | 115,296 | 28,896 |
-| Character vocabulary | 96 | 96 |
+| Vocabulary | 96 | 96 |
 | GPU API | CUDA | Metal |
-| Game | Doom | Raycast maze |
+| Game | Doom | Doom via metal-doom |
 
-Our model has about a quarter as many learned weights as upstream's small model. It also has 1,536 fixed embedding values. It learns letter patterns from the short included corpus, so its text can be repetitive or incoherent. This is a demonstration of concurrent GPU work, not a general conversation model.
+There are also 1,536 fixed embedding values. The model learns letter patterns
+from the included short corpus; it is not a general conversation model. Fixed
+worker groups keep scheduling simple but do not fill the whole GPU. The earlier
+version used a raycast maze while the native Metal Doom port was being built;
+the current integration replaces that maze with the actual game engine.
 
-Upstream uses work queues and, in its larger version, partitions work across many NVIDIA GPU cores. This version gives each job a fixed group of 32 threads in one threadgroup. That keeps scheduling simple and uses Metal's documented guarantee that these groups can make independent progress.
-
-**Why not Doom?** Upstream compiles Doom into NVIDIA GPU code and merges it into the CUDA kernel. That build path cannot be reused with Metal. Porting the engine and its runtime support would be a substantial separate task. The maze provides movement, collision, controls, and GPU rendering with much less code.
-
-## Test it
-
-```sh
-./test.sh
-```
-
-This builds the app, compares GPU training updates against an independent Python reference, then runs and checks a ten-second live demo. The Python model calculations exist only in the test.
-
-For a longer recorded run:
+## Validate it
 
 ```sh
-./build/metal-megakernel --headless --seconds 60 --test-input --output results/my-run
-python3 tests/validate.py results/my-run --min-seconds 60 --scripted
+DOOM_WAD=/path/to/doom1.wad ./test.sh
 ```
 
-Omit `--headless` to show the window. Omit `--test-input` for manual controls. Use `--corpus FILE` to supply printable ASCII text. `--help` lists the options. A normal launch runs until stopped; `Ctrl-C` stops a headless run.
+This compares training updates against an independent scalar Python model, then
+records all three running together for twelve seconds. Every published Doom
+frame is replayed in the original native C engine with the exact same inputs,
+tick batches, and render schedule. All sixteen game diagnostics and every
+framebuffer hash must match. Both builds apply the documented zero-filled cache
+padding described below. The C reference runs only in tests.
 
-A recorded two-minute GUI run completed **857,309 training steps, 7,115 characters, and 3,471 frames**, with zero snapshot checksum mismatches. The loss fell from 4.55 to 0.20. See [validation results and saved evidence](docs/validation.md).
+For a longer recording:
 
-## Limits
+```sh
+./build/metal-megakernel --headless --wad /path/to/doom1.wad \
+  --seconds 60 --test-input --output results/doom-60s
+python3 tests/validate_doom.py results/doom-60s --wad /path/to/doom1.wad \
+  --min-seconds 60 --scripted
+```
 
-- The undocumented system-coherence feature is the main compatibility risk. Ordinary shared-buffer atomics did not provide reliable live CPU/GPU communication in our tests.
-- Only three groups of 32 threads run the workloads. This is not tuned to fill all ten GPU cores or match upstream's speed.
-- Long-running kernels may encounter OS timeouts. The recorded runs prove their tested durations, not unlimited runtime or support on other Macs.
-- The CPU supplies wall time for pacing. If its event loop stalls, training continues while text and game pacing wait for a clock update. A long display stall can also lose old text from the output ring; lost characters are counted.
-- The small corpus makes learning easy to see, but falling training loss does not establish general language ability.
+`--seconds` measures play time after Doom's first frame. Omit `--headless` for the
+window, or `--test-input` for manual controls. `Ctrl-C` stops a headless run.
+`--corpus FILE` supplies printable ASCII text. `--ml-test --headless --steps N`
+is an explicit numerical test mode that omits Doom; it does not prove combined
+execution. `--help` lists normal options.
 
-## Files and further reading
+A recorded sixty-second run completed **525,642 training steps, 3,585 characters,
+and 2,055 Doom frames**, with every Doom frame matching native C and zero
+snapshot errors. See [saved evidence](docs/evidence/doom-60s/README.md).
 
-- [`src/Persistent.metal`](src/Persistent.metal): all three GPU workloads.
-- [`src/main.mm`](src/main.mm): setup, the one dispatch, input/output, and native window.
-- [`src/Config.h`](src/Config.h): shared sizes and buffer layout.
-- [`docs/original-research.md`](docs/original-research.md): the upstream design we studied, with pinned source links.
-- [`docs/metal-research.md`](docs/metal-research.md): Metal's scheduling and synchronization rules.
-- [`docs/host-gpu-coherence.md`](docs/host-gpu-coherence.md): the experimental live-memory mechanism.
+[Integration and validation details](docs/doom-integration.md) explain the buffer
+ownership and evidence. Older maze results in [docs/validation.md](docs/validation.md)
+are historical and do not validate the Doom integration.
 
-MIT licensed. Credits and third-party notices are in [CREDITS.md](CREDITS.md) and [third_party/licenses](third_party/licenses).
+## Limits and source
+
+- Live system coherence uses experimental compiler internals.
+- Only three SIMD groups run the workloads; this is not tuned for maximum GPU use.
+- Doom's gameplay and traversal are mostly serial, with a 96 MiB linear memory
+  image. Audio is not implemented. Consult the Doom submodule for engine limits.
+- The CPU supplies pacing time. A stalled host pauses Doom publication and text
+  pacing; training can continue. A long host stall can lose old generated text,
+  which the app counts. Doom uses acknowledgement ownership to preserve frames.
+- Persistent kernels may encounter OS limits. Tests establish their measured
+  durations on the tested machine, not indefinite execution on all Macs.
+
+Main files: [`src/Persistent.metal`](src/Persistent.metal),
+[`src/main.mm`](src/main.mm), [`src/Config.h`](src/Config.h), and
+[`third_party/metal-doom`](third_party/metal-doom).
+[Upstream study](docs/original-research.md) ·
+[Metal scheduling notes](docs/metal-research.md).
+
+The combined program is **GPL-2.0-or-later**. Component notices are retained in
+[CREDITS.md](CREDITS.md) and the submodule. Game assets are separate.

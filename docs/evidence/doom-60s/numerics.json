@@ -1,0 +1,26 @@
+[
+  {
+    "steps": 1,
+    "seed": 42,
+    "maxParameterError": 7.450580596923828e-09,
+    "firstLossError": 7.869206886113034e-08,
+    "finalLossError": 7.869206886113034e-08,
+    "pass": true
+  },
+  {
+    "steps": 4,
+    "seed": 0,
+    "maxParameterError": 7.450580596923828e-09,
+    "firstLossError": 3.5519562224806123e-07,
+    "finalLossError": 3.6890640497944105e-07,
+    "pass": true
+  },
+  {
+    "steps": 32,
+    "seed": 12345,
+    "maxParameterError": 1.4901161193847656e-08,
+    "firstLossError": 2.7627278509356756e-07,
+    "finalLossError": 2.721281512130247e-06,
+    "pass": true
+  }
+]
