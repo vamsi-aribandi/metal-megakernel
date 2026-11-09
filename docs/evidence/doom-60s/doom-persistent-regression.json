@@ -1,0 +1,93 @@
+{
+  "passed": true,
+  "cases": [
+    {
+      "ticks_per_frame": 1,
+      "ticks": 420,
+      "frames_compared": 421,
+      "diagnostic_values_compared": 6736,
+      "coverage": {
+        "low_detail": true,
+        "reduced_viewport": true,
+        "restored_viewport": true,
+        "automap": true,
+        "menu": true,
+        "pause": true,
+        "full_screen": true,
+        "gamma": true,
+        "movement": true,
+        "turning": true,
+        "firing_input": true
+      },
+      "persistence": {
+        "dispatches": 1,
+        "submissions": 1,
+        "frames": 421,
+        "live_frames": 421,
+        "ticks": 420,
+        "seconds": 6.244617,
+        "status": 4,
+        "reason": 2
+      },
+      "final_frame_sha256": "132a7f9da9c6d98c01e22735d34c795bcf6bf55404460142ae4132f9b998f54d"
+    },
+    {
+      "ticks_per_frame": 8,
+      "ticks": 420,
+      "frames_compared": 54,
+      "diagnostic_values_compared": 864,
+      "coverage": {
+        "low_detail": true,
+        "reduced_viewport": true,
+        "restored_viewport": true,
+        "automap": true,
+        "menu": true,
+        "pause": true,
+        "full_screen": true,
+        "gamma": true,
+        "movement": true,
+        "turning": true,
+        "firing_input": true
+      },
+      "persistence": {
+        "dispatches": 1,
+        "submissions": 1,
+        "frames": 54,
+        "live_frames": 54,
+        "ticks": 420,
+        "seconds": 1.566966,
+        "status": 4,
+        "reason": 2
+      },
+      "final_frame_sha256": "132a7f9da9c6d98c01e22735d34c795bcf6bf55404460142ae4132f9b998f54d"
+    }
+  ],
+  "live": {
+    "gpu": {
+      "passed": true,
+      "dispatches": 1,
+      "submissions": 1,
+      "frames": 175,
+      "ticks": 174,
+      "seconds": 5.02169,
+      "fps": 34.6497,
+      "max_ticks_per_frame": 1,
+      "observed_key_mask": 76,
+      "stop_ms": 0.14775,
+      "stop_while_unacknowledged": true,
+      "status": 4
+    },
+    "cpu_reference": {
+      "passed": true,
+      "frames_compared": 175,
+      "diagnostic_values_compared": 2800,
+      "ticks": 174,
+      "max_ticks_per_frame": 1,
+      "observed_key_mask": 76,
+      "final_frame_sha256": "db6e78553f391f81ecf1c6d05e8bb666343f0e9b384e41350ce36b3282fdc7c5"
+    }
+  },
+  "frames_compared": 650,
+  "diagnostic_values_compared": 10400,
+  "wad_sha256": "1d7d43be501e67d927e415e0b8f3e29c3bf33075e859721816f652a526cac771"
+}

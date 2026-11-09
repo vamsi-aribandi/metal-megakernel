@@ -22,7 +22,8 @@ Python 3.9+, and the Doom build tools. On a Homebrew Mac:
 ```sh
 xcode-select --install  # only if Command Line Tools are missing
 brew install llvm lld wabt
-git clone --recurse-submodules https://github.com/vamsi-aribandi/metal-megakernel.git
+git clone --recurse-submodules --branch integrate-metal-doom \
+  https://github.com/vamsi-aribandi/metal-megakernel.git
 cd metal-megakernel
 ./run.sh --wad /path/to/doom1.wad
 ```

@@ -73,7 +73,7 @@ same documented cache preparation fix. Original vendored Doom source is retained
 The submodule's `tests/test_cache_boundaries.py` replays the exact 2,056-frame
 schedule that found the problem against serial and cooperative Metal rendering.
 It stores only tick/input pairs, with no game assets. The ordinary persistent
-suite also covers viewport changes, menu, map, pause, low detail, and stopping
+suite passed 650 compared frames and also covers viewport changes, menu, map, pause, low detail, and stopping
 while a frame is unacknowledged.
 
 ## Recorded result

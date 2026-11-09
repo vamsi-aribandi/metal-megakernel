@@ -17,3 +17,6 @@ reads. Both builds use documented zero-filled cache padding.
 
 The native window ran during the test, but the Mac was locked when computer-use
 inspection was attempted, so no visual inspection or screenshot is claimed.
+
+`doom-persistent-regression.json` records the standalone viewport/menu/map/pause,
+1/8-tick replay, live control, and unacknowledged-frame stop checks (650 frames).
