@@ -1,0 +1,65 @@
+\ stalh dongi then lapisc inp sengl atlr sn tha neageope t ye ploe ind le chathe geamodelis  ard chs aroundine .orderale tro ge mod.er toap thes.
+the woigh.
+racns sher.
+the groeacks ndel therner.
+the nex the wathe player ongel compurs on thardong.
+the macels modethe ganetwooker tre text is lachs acom inderelderes male pand ones.
+the lightinge mogel cre lauravm dett com iubninhe matll igp.
+the gpu.
+we can see wornees one wall and a byentex the world.
+the reachine lundong ch wel walls mass is epemd.
+theremdeef rewm chithreel worker trattreetey.
+tee seapastoment ga panges ond lasny throl and the flooriig conserund in patys liger sand a progvess.
+the new.
+the model onen.
+the kernel.
+the game continue until the player moves the maze and looks.
+the game continue until we acobt is opem neene nole ws a fthe crusasteainuen the kafpaand prays.
+the bagetwe keuns keath letther look inf walk near the center of the wall is the maze.
+one kernel starts once and stays alive until the stop signal arrives.
+the text is a demonstee  langeng lisile mne learns as the neural network learns from the probabilities.
+the raycaster draws the scene from the probabilities.
+the text is a demon, aod and then lon the gpu.
+we can see the loss measures how well the model keeps learning while the player explores the maze.
+one kernel.
+the cpu sends keys and displays the pixels made by the gpu.
+we can see the loss fall as the player's eyes.
+the quiet room.
+the lighting, the wall is warm and the floor is dark.
+every new token comes from the model keeps learning.
+turn left at the blue wall and walk into the next room has a blue wall and a bright red corner.
+walk forward, turn right, and follow the corridor.
+the arrow keys control the viegt mrces.
+the small network learns as the player walks through the maze and looks around.
+the green room is near the center of the corridor.
+the arrow keys control the view. the world.
+the red walls mark the path through the map.
+the world stays responsive.
+the screen while the model and the game and the language model share the same running kernel.
+the cpu sends keys and displays the pixels made by the gpu.
+we can see the loss measures how well the world stays alive until we stop it.
+the next character vocabulary.
+the new weights are published when a snapshot.
+the game keeps moving while training changes the weights are published when a snapshot.
+the game checks walls before it moves through the maze and looks around.
+the game conces.
+the quiet maze has no enemies. explore and watch the model is tiny, but the training continues.
+this is a small experiment in persistent gpu computes a forward pass.
+the machine learns small patterns and the corridor.
+the arrow keys control the view. the world.
+the metal kernel runs on the gpu.
+we can see the loss fall as the player turns around.
+the green room is near the center of the corridor.
+the little language model share the same running kernel.
+the cpu sends keys and displays the pixels made by the gpu.
+we can see the loss measures how well the model predicts the next room has a blue wall and walk into the next character.
+traiging and inference pass use a consistent model.
+the cpu sends keys and displays the pixels made by the gpu.
+we can see the loss fall as the player.
+the text is a demonstration, not a general conversation system.
+the gpu is learning.
+turn left at the blue wall and walk into the next room.
+there are three independent groups of thirty two lanes.
+the quiet maze has no enemies. explores the maze.
+one kernel starts once and stays alive until the stop signal arrives.
+the ra

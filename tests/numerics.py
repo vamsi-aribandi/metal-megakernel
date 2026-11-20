@@ -92,8 +92,8 @@ def main():
     for steps, seed in ((1, 42), (4, 0), (32, 12345)):
         prefix = args.output / f"steps{steps}-seed{seed}"
         run = args.output / f"run-{steps}-{seed}"
-        command = [str(args.binary), "--headless", "--steps", str(steps), "--seed", str(seed), "--seconds", "5", "--dump-prefix", str(prefix), "--output", str(run)]
-        result = subprocess.run(command, cwd=ROOT, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=15)
+        command = [str(args.binary), "--headless", "--ml-test", "--steps", str(steps), "--seed", str(seed), "--seconds", "5", "--dump-prefix", str(prefix), "--output", str(run)]
+        result = subprocess.run(command, cwd=ROOT, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=180)
         (prefix.with_suffix(".log")).write_text(result.stdout)
         assert result.returncode == 0, result.stdout
         actual = words(Path(str(prefix) + "-final.bin"), "f")

@@ -1,0 +1,22 @@
+[
+  {
+    "serial": false,
+    "passed": true,
+    "frames_compared": 2056,
+    "diagnostic_values_compared": 32896,
+    "ticks": 2099,
+    "max_ticks_per_frame": 2,
+    "observed_key_mask": 207,
+    "final_frame_sha256": "61b900f064c169ea25d4fc52d5f448a0a32045c23779e94b1d202a3f73780b7a"
+  },
+  {
+    "serial": true,
+    "passed": true,
+    "frames_compared": 2056,
+    "diagnostic_values_compared": 32896,
+    "ticks": 2099,
+    "max_ticks_per_frame": 2,
+    "observed_key_mask": 207,
+    "final_frame_sha256": "61b900f064c169ea25d4fc52d5f448a0a32045c23779e94b1d202a3f73780b7a"
+  }
+]
