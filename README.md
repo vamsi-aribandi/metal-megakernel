@@ -1,12 +1,50 @@
 # Metal Megakernel
 
-Play Doom while your Mac trains a tiny language model and generates text from
-it. All three jobs run together inside one Metal GPU dispatch.
+## What’s going on?
 
-[![Play the demo video. Doom is on the right, with training loss and generated text on the left.](docs/media/demo-preview.jpg)](docs/media/demo.mp4?raw=true)
+Play Doom while your Mac trains a tiny language model and uses it to write text.
+In the recording, Doom is on the right. The loss graph on the left shows how
+well the model predicts the next character, and the text below it comes from
+the model as it learns.
 
-[Watch the 12-second demo (MP4)](docs/media/demo.mp4?raw=true). The clip shows the
-macOS app running on an Apple M4 with scripted Doom input. It’s silent.
+[![Doom in motion beside the training loss graph and generated text](docs/media/demo-preview.webp)](docs/media/demo.mp4?raw=true)
+
+*12 seconds on an Apple M4, with scripted Doom input and no audio.*
+[Download the MP4](docs/media/demo.mp4?raw=true)
+
+## How does it work?
+
+The Mac starts one GPU program, called a kernel, and leaves it running. Inside
+that single launch, 96 GPU threads split into three teams of 32:
+
+1. **Train.** Read a sample of text, guess the next character from the previous
+   eight, then update the model based on the error.
+2. **Generate.** Take a complete copy of the latest weights and use it to
+   produce more characters while training continues.
+3. **Play.** Read the controls, advance Doom, and draw the next frame.
+
+The CPU loads the game data, sends keyboard input and timing, and shows the
+results in an AppKit window. The GPU does the learning, text generation, and
+Doom gameplay and rendering. [Integration details](docs/doom-integration.md)
+
+## What’s different from the CUDA demo?
+
+This project borrows its three-job setup from Jerry Zhu and Arnold Xu’s open CUDA demo.
+The table compares this version with their small character demo. Their
+repository also includes a separate, later GPT version with about 162 million
+parameters. [Open Flapping Airplanes source](https://github.com/Bobliuuu/open-flapping-airplanes) · [Source notes](docs/original-research.md)
+
+| | Open CUDA demo | Metal Megakernel |
+| --- | --- | --- |
+| Hardware | NVIDIA GPU with CUDA | Apple Silicon GPU with Metal |
+| Model | 512 units in the hidden layer and 115,296 learned weights | 128 units and 28,896 learned weights, about a quarter as many |
+| How work is assigned | GPU workers pick up tasks, prioritizing Doom, then generation, then training | Each job has its own fixed team of 32 threads |
+| How generation reads the model | Reads the shared weights that training updates | Reads complete snapshots of the weights |
+| How Doom gets onto the GPU | Compiles Doom to NVIDIA GPU code | Builds Doom C into native Metal functions using a WebAssembly intermediate, via the pinned Metal Doom submodule |
+
+Both small models predict one character at a time from the previous eight. The
+Metal window is written in Objective-C++ with AppKit, and its GPU code uses
+Metal Shading Language. [Metal Doom](https://github.com/vamsi-aribandi/metal-doom)
 
 ## Try it on your Mac
 
@@ -35,29 +73,6 @@ and GPU compilation can take a little while.
 | Shift / 1–7 | Run / select a weapon |
 | Tab / M / Z | Map / game menu / confirm in menu |
 | Esc or close the window | Stop all three jobs |
-
-## What’s running on the GPU?
-
-The app launches 96 GPU threads once and splits them into three groups of 32.
-Each group keeps doing its job until you stop the app.
-
-- **Train** learns to predict the next character from the previous eight.
-- **Generate** samples characters using fresh copies of the weights as training
-  updates them. You can see patterns from the sample text start to appear.
-- **Play** advances the actual Doom game and draws each frame. The CPU sends
-  keyboard input and timing, then displays the finished frames.
-
-The GPU code uses Metal Shading Language. The Mac window uses Objective-C++
-and AppKit. The Doom submodule compiles the original C engine to native Metal
-functions through a WebAssembly build step. [Metal Doom](https://github.com/vamsi-aribandi/metal-doom)
-
-## What changed from upstream?
-
-The original project used CUDA. This version runs on Apple Silicon and uses
-128 hidden units instead of 512 in upstream’s small character model. That’s
-**28,896 learned weights**, about a quarter of upstream’s 115,296. The earlier
-Metal demo used a maze while the Doom port was in development.
-[open-flapping-airplanes by Jerry Zhu and Arnold Xu](https://github.com/Bobliuuu/open-flapping-airplanes)
 
 ## Tests and details
 
