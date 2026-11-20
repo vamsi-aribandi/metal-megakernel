@@ -23,7 +23,15 @@ Validation on Apple M4 / macOS 26.5.1:
   control/render-state frames, all matched native C.
 - Missing/malformed IWAD and CLI error paths checked.
 
-Evidence is under docs/evidence/doom-60s. The Mac was locked during attempted
-computer-use inspection, so no visual screenshot check is claimed. System
-coherence remains experimental and undocumented. Game assets are not bundled.
-Please leave this PR unmerged.
+- Native window visually verified: movement, turning, fire, use, Escape, picker
+  selection and cancellation. The final bundled build matched all 647 frames
+  in a twenty-second native-keyboard recording. Final `test.sh` rerun passed.
+
+The app bundle contains its executable and completes the macOS launch handshake
+before opening the IWAD picker. Resource lookup supports CLI and bundle paths.
+Evidence is under docs/evidence/doom-60s and docs/evidence/native-ui. The GPU
+shader is unchanged by the startup fixes. System coherence remains experimental
+and undocumented. Game assets are not bundled.
+
+Depends on https://github.com/vamsi-aribandi/metal-doom/pull/1 via a pinned
+submodule commit. Please leave both PRs unmerged.

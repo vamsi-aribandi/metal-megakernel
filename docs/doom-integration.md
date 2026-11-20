@@ -86,9 +86,16 @@ All three counters advanced in 547 sampled intervals while the command was still
 running. Stop took 19 ms. The regression replay separately matched 2,056 frames
 in each renderer, and model update errors stayed below 1.5e-8.
 
-The AppKit window/event loop ran during the minute test. The Mac was locked
-when computer-use inspection was attempted, so a visual window check remains
-unverified; no screenshot is claimed.
+The native window was visually verified on November 19, including keyboard
+movement, turning, firing, use, Escape, file-picker selection, and cancellation.
+The [final packaged-build recording](evidence/native-ui/README.md) matched all
+647 Doom frames during twenty seconds of native keyboard input. The final
+numerical and twelve-second combined tests also passed.
+
+The app bundle contains a real executable and resolves resources from either
+the CLI or bundle path. macOS finishes launching before the modal IWAD picker;
+after selection, the game window opens explicitly. The compiled GPU source is
+unchanged from the minute test. Its historical host source is at `460a601`.
 
 ## Limits
 

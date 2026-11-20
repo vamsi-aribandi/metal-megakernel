@@ -20,3 +20,8 @@ inspection was attempted, so no visual inspection or screenshot is claimed.
 
 `doom-persistent-regression.json` records the standalone viewport/menu/map/pause,
 1/8-tick replay, live control, and unacknowledged-frame stop checks (650 frames).
+
+The host source for this historical run is at commit `460a601`. A later native
+window check and startup fix are documented in [../native-ui](../native-ui/README.md).
+That final bundled build used the identical compiled GPU shader and passed its
+own full frame replay.

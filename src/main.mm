@@ -437,10 +437,14 @@ static void label(NSString *s, NSRect r, CGFloat size, NSColor *color, bool mono
 @property(nonatomic, strong) NSWindow *window;
 @property(nonatomic, strong) DemoView *view;
 @property(nonatomic, strong) NSTimer *timer;
+- (void)showWindow;
 @end
 @implementation DemoDelegate
 - (void)applicationDidFinishLaunching:(NSNotification *)note {
-    (void)note;
+    (void)note; [self showWindow];
+}
+- (void)showWindow {
+    if (self.window) return;
     self.window=[[NSWindow alloc] initWithContentRect:NSMakeRect(100,100,1120,800) styleMask:NSWindowStyleMaskTitled|NSWindowStyleMaskClosable|NSWindowStyleMaskMiniaturizable backing:NSBackingStoreBuffered defer:NO];
     self.window.title=@"Metal Megakernel — one kernel, three workloads"; self.window.delegate=self;
     self.view=[[DemoView alloc] initWithFrame:self.window.contentView.bounds];self.view.engine=self.engine;
@@ -460,7 +464,12 @@ static void label(NSString *s, NSRect r, CGFloat size, NSColor *color, bool mono
 
 int main(int argc, char **argv) { @autoreleasepool { try {
     Options options;
-    options.root=std::filesystem::canonical(argv[0]).parent_path().parent_path().string();
+    bool appLaunchedForPicker = false;
+    auto executableDirectory = std::filesystem::canonical(argv[0]).parent_path();
+    if (executableDirectory.filename() == "MacOS" && executableDirectory.parent_path().filename() == "Contents")
+        options.root = executableDirectory.parent_path().parent_path().parent_path().parent_path().string();
+    else
+        options.root = executableDirectory.parent_path().string();
     for(int i=1;i<argc;++i) {
         std::string a=argv[i];
         auto value=[&](){if(i+1>=argc)throw std::runtime_error("Missing value after "+a);return std::string(argv[++i]);};
@@ -477,6 +486,8 @@ int main(int argc, char **argv) { @autoreleasepool { try {
     if (!options.mlTest && options.wad.empty()) {
         if (options.headless) throw std::runtime_error("Supply --wad /path/to/doom1.wad or set DOOM_WAD (assets are not bundled)");
         [NSApplication sharedApplication]; [NSApp setActivationPolicy:NSApplicationActivationPolicyRegular]; [NSApp activateIgnoringOtherApps:YES];
+        // Complete the macOS launch handshake before entering the picker modal loop.
+        [NSApp finishLaunching]; appLaunchedForPicker = true;
         NSOpenPanel *panel = [NSOpenPanel openPanel]; panel.title = @"Select your Doom IWAD";
         panel.message = @"Choose doom1.wad or a compatible IWAD. Game assets are supplied separately.";
         panel.canChooseDirectories = NO; panel.allowsMultipleSelection = NO;
@@ -487,7 +498,9 @@ int main(int argc, char **argv) { @autoreleasepool { try {
     Engine engine(options);
     if(options.headless) { while(!engine.done()) {engine.poll();std::this_thread::sleep_for(std::chrono::milliseconds(5));}engine.finish(); }
     else { [NSApplication sharedApplication]; [NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
-        DemoDelegate *delegate=[DemoDelegate new];delegate.engine=&engine;NSApp.delegate=delegate;[NSApp run];engine.finish(); }
+        DemoDelegate *delegate=[DemoDelegate new];delegate.engine=&engine;NSApp.delegate=delegate;
+        if (appLaunchedForPicker) [delegate showWindow];
+        [NSApp run];engine.finish(); }
     return engine.command.status==MTLCommandBufferStatusCompleted &&
         (options.mlTest || (engine.doomSequence > 0 && load(&engine.dout->done) == 1 &&
          !load(&engine.dout->result) && !load(&engine.dout->fault))) ? 0 : 1;
